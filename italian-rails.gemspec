@@ -7,16 +7,17 @@ require "italian-rails/version"
 Gem::Specification.new do |s|
   s.name        = "italian-rails"
   s.version     = ItalianRails::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ["Marco Cosentino"]
+  s.email       = ["marco.cosentino@professioneit.com"]
   s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ItalianRails."
-  s.description = "TODO: Description of ItalianRails."
+  s.summary     = "Develop italian users based applications"
+  s.description = "This rails plugin provides helpers to develop applications based on italian users."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.1"
+  s.add_dependency "sqlite3"
 
   s.add_development_dependency "sqlite3"
 end
