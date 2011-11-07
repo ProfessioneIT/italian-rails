@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
 
       t.string :name
       t.string :surname
-      t.boolean :male
+      t.column :male, :boolean, :null => false
       t.string :codice_fiscale_code, :limit => 16
       t.string :address1, :limit => 1024
       t.string :address2, :limit => 1024

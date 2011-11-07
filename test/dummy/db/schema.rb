@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20111107091825) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "surname"
+    t.boolean  "male",                                :null => false
     t.string   "codice_fiscale_code", :limit => 16
     t.string   "address1",            :limit => 1024
     t.string   "address2",            :limit => 1024
