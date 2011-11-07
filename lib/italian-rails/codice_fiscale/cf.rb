@@ -1,13 +1,3 @@
-class Integer
-  def even?
-    self & 1 == 0
-  end
-
-  def odd?
-    !self.even?
-  end
-end
-
 module CodiceFiscale
   class CF
 
