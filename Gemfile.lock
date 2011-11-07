@@ -3,6 +3,7 @@ PATH
   specs:
     italian-rails (0.0.1)
       rails (~> 3.1.1)
+      sqlite3
 
 GEM
   remote: http://rubygems.org/
