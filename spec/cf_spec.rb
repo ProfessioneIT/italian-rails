@@ -8,16 +8,36 @@ include CodiceFiscale
   born in Catania on 01/01/1990
 
   RSS MRA 90A01 C351Q
+
+  --------------------------------
+
+  Another test character:
+  BIANCHI GIOVANNA
+  born in CATANIA on 31/03/1960
+
+  BNC GNN 60C71 C351U
 =end
 
 describe CF do
-  context "duplicates" do
-    it "leaves a normal" do
-      CF.translate_duplicate_code_without_check_digit("RSSMRA90A01C351").should eql "RSSMRA90A01C351"
+  context "duplicate-avoidance handling" do
+    context "without check digit" do
+      it "leaves intact a normal code" do
+        CF.translate_duplicate_code_without_check_digit("RSSMRA90A01C351").should eql "RSSMRA90A01C351"
+      end
+      it "translates duplicate code into normal" do
+        CF.translate_duplicate_code_without_check_digit("RSSMRAVLALMCPRM").should eql "RSSMRA90A01C351"
+      end
     end
-    it "translates duplicate code into normal" do
-      CF.translate_duplicate_code_without_check_digit("RSSMRAVLALMCPRM").should eql "RSSMRA90A01C351"
+
+    context "with check digit" do
+      it "leaves intact a normal code" do
+        CF.translate_duplicate_code_without_check_digit("RSSMRA90A01C351Q").should eql "RSSMRA90A01C351"
+      end
+      it "translates duplicate code into normal" do
+        CF.translate_duplicate_code_without_check_digit("RSSMRAVLALMCPRMX").should eql "RSSMRA90A01C351"
+      end
     end
+
   end
 
   context "check digit" do
@@ -47,5 +67,35 @@ describe CF do
     it "should return false for a non-valid code" do
       CF.valid?("RSSMRM90A01C351Q").should be false
     end
+  end
+
+  context "personal data decoding" do
+    it "should correctly recognize sex from a valid codice fiscale" do
+      CF.male?("RSSMRA90A01C351Q").should be true
+      CF.male?("BNCGNN60C71C351U").should be false
+    end
+
+    it "should correctly guess the birthdate" do
+      CF.birthdate("RSSMRA90A01C351Q").should eql Date.new(1990,01,01)
+    end
+    
+  end
+
+  describe "member functions" do
+    newcf = CF.new("RSSMRA90A01C351Q")
+
+    it "should validate correctly a valid instance" do
+      newcf.valid?.should be true
+    end
+
+    it "should tell correctly the sex" do
+      newcf.male?.should be true
+      CF.new("BNCGNN60C71C351U").male?.should be false
+    end
+    
+    it "should tell correctly the birthdate" do
+      newcf.birthdate.should eql Date.new(1990,01,01)
+    end
+    
   end
 end
