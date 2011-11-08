@@ -113,12 +113,18 @@ module CodiceFiscale
       day < 40
     end
 
+    # It returns the birth date of the subject. 
+    # This method guesses that the subject is less than 100 years old as of today. 
+    # This is necessary because the codice fiscale reports only the last two digits from the birth year
     def self.birthdate(str)
       raise ArgumentError unless CF.valid?(str)
       tr = CF.translate_duplicate_code str
       name, yr, mt, dy, place, cd = self.parts(tr)
       year = yr.to_i + 1900
-      year += 100 if Date.today.year > year + 100
+
+      # We are assuming that the subject is less than 100 years old here
+      year += 100 if year + 100 < Date.today.year 
+
       day = dy.to_i
       day -= 40 if day > 40
       Date.new(year, MONTHS[mt], day)
