@@ -21,6 +21,10 @@ describe CF do
   end
 
   context "check digit" do
+    it "should raise exception on nil input" do
+      lambda { CF.check_digit(nil) }.should raise_exception(ArgumentError)
+    end
+    
     it "should calculate correctly the check digit" do
       CF.check_digit("RSSMRA90A01C351").should eql "Q"
     end
@@ -32,6 +36,10 @@ describe CF do
   end 
 
   context "validation" do
+    it "should return false on nil input" do
+      CF.valid?(nil).should be false
+    end
+    
     it "should return true for a valid code" do
       CF.valid?("RSSMRA90A01C351Q").should be true
     end

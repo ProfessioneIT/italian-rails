@@ -37,7 +37,7 @@ module CodiceFiscale
 
     def self.check_digit(str,format_ok=false)
       unless format_ok
-        raise ArgumentError unless
+        raise ArgumentError unless str
         str.upcase!
         raise ArgumentError unless str =~ FORMAT_NO_CHECK_DIGIT
       end
