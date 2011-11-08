@@ -28,6 +28,7 @@ module CodiceFiscale
     }
     
     def self.valid?(str)
+      return false unless str
       str.upcase!
       return false unless str =~ FORMAT
       return false unless str[-1,1] == self.check_digit(str[0..14],true)
@@ -36,6 +37,7 @@ module CodiceFiscale
 
     def self.check_digit(str,format_ok=false)
       unless format_ok
+        raise ArgumentError unless
         str.upcase!
         raise ArgumentError unless str =~ FORMAT_NO_CHECK_DIGIT
       end
