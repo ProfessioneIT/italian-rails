@@ -16,6 +16,13 @@ include CodiceFiscale
   born in CATANIA on 31/03/1960
 
   BNC GNN 60C71 C351U
+
+  --------------------------------
+
+  Another test character:
+  VERDI ANNA
+  born in ROMA on 31/12/2010
+  VRD NNA 10T71 H501E
 =end
 
 describe CF do
@@ -77,6 +84,7 @@ describe CF do
 
     it "should correctly guess the birthdate" do
       CF.birthdate("RSSMRA90A01C351Q").should eql Date.new(1990,01,01)
+      CF.birthdate("VRDNNA10T71H501E").should eql Date.new(2010,12,31)
     end
     
   end
