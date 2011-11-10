@@ -11,6 +11,29 @@
     </div>
   <% end %>
 
+  <div class="fields">
+    <div class="field">
+      <%=f.label :name%>
+      <%=f.text_field :name%>
+    </div>
+    <div class="field">
+      <%=f.label :surname%>
+      <%=f.text_field :surname%>
+    </div>
+    <div class="field">
+      <%=f.label :codice_fiscale_code%>
+      <%=f.text_field :codice_fiscale_code, :class => 'codice_fiscale' %>
+    </div>
+    <div class="field">
+      <%=f.label :birthdate %>
+      <%=f.text_field :birthdate, :class => 'birthdate' %>
+    </div>
+    <div class="field">
+      <%=f.label :birthplace%>
+      <%=f.text_field :birthplace, :class => 'birthplace' %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

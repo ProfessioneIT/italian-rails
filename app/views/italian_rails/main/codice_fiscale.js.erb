@@ -1,0 +1,5 @@
+<%- if @cf.valid? %>
+  (function($){
+    $('<%=ItalianRails.config.codice_fiscale.birthdate_selector %>').val('<%=@cf.birthdate%>');
+  })( jQuery )
+<%- end %>

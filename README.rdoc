@@ -7,3 +7,16 @@ sviluppare un'applicazione che tratta specificamente utenze italiane.
 * Validazione del codice fiscale
 * Database dei cap
 * Form helpers AJAX per aiutare l'utente nella compilazione degli indirizzi
+
+== Installazione
+Inserire all'interno del Gemfile
+<code>
+gem 'italian-rails'
+</code>
+
+== Configurazione
+Eseguire da shell
+<code>
+$ rails generate italian_rails:install
+</code>
+verrà generata la configurazione di base per italian-rails in `config/initializers/italian-rails.rb`
