@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = ItalianRails::VERSION
   s.authors     = ["Marco Cosentino"]
   s.email       = ["marco.cosentino@professioneit.com"]
-  s.homepage    = "TODO"
+  s.homepage    = "https://github.com/ProfessioneIT/italian-rails"
   s.summary     = "Develop italian users based applications"
   s.description = "This rails plugin provides helpers to develop applications based on italian users."
 
