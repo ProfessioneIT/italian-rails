@@ -1,5 +1,20 @@
 <%- if @cf.valid? %>
+  <%- 
+    bd = @cf.birthdate 
+    conf = ItalianRails.config.codice_fiscale
+  %>
   (function($){
-    $('<%=ItalianRails.config.codice_fiscale.birthdate_selector %>').val('<%=@cf.birthdate%>');
+    <%- if not conf.birthdate_selector.blank? %>
+      $('<%=conf.birthdate_selector%>').val('<%=conf.birthdate_localize ? I18n.l(bd) : bd.to_s %>');
+    <%- end %>
+    <%- if not conf.birthdate_day_selector.blank? %>
+      $('<%=conf.birthdate_day_selector%>').val('<%=bd.day%>');
+    <%- end %>
+    <%- if not conf.birthdate_month_selector.blank? %>
+      $('<%=conf.birthdate_month_selector%>').val('<%=bd.month%>');
+    <%- end %>
+    <%- if not conf.birthdate_year_selector.blank? %>
+      $('<%=conf.birthdate_year_selector%>').val('<%=bd.year%>');
+    <%- end %>
   })( jQuery )
 <%- end %>

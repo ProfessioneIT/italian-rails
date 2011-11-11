@@ -9,10 +9,8 @@ module ItalianRails
   end
 
   class CodiceFiscaleConfiguration
-    attr_accessor :birthdate_selector, :birthplace_selector, :birthplace_lookup
-
-    def initialize
-      @birthdate_selector = 'input.birthdate'
-    end
+    attr_accessor :birthdate_selector, :birthplace_selector, :birthplace_lookup, 
+      :birthdate_localize,
+      :birthdate_day_selector, :birthdate_month_selector, :birthdate_year_selector
   end
 end
