@@ -110,7 +110,7 @@ module ItalianRails
       def self.male?(str)
         raise ArgumentError unless CF.valid?(str)
         tr = CF.translate_duplicate_code_without_check_digit str
-        day = self.part(str, :day).to_i
+        day = self.part(tr, :day).to_i
         day < 40
       end
 
@@ -131,6 +131,17 @@ module ItalianRails
         Date.new(year, MONTHS[mt], day)
       end
 
+      def self.birthplace_lookup(str)
+        raise ArgumentError unless CF.valid?(str)
+        tr = CF.translate_duplicate_code str
+        placecode = self.part(tr, :place)
+        ret = []
+        ItalianRails::DB::Adapter.instance.execute("select comune, provincia from tab_codici_cf where codice=?", [placecode]) do |row|
+          ret << {:comune => row[0], :provincia => row[1]}
+        end
+        ret
+      end
+
       # Member functions
       
       # Initializes the instance.
@@ -138,7 +149,7 @@ module ItalianRails
         @code = code      
       end
 
-      [:valid?, :male?, :birthdate].each do |method|
+      [:valid?, :male?, :birthdate, :birthplace_lookup].each do |method|
         class_eval "def #{method}; CF.#{method} @code; end"
       end
 

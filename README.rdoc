@@ -11,7 +11,14 @@ sviluppare un'applicazione che tratta specificamente utenze italiane.
 == Installazione
 Inserire all'interno del Gemfile
 <code>
-gem 'italian-rails'
+gem 'italian-rails', :git => 'git://github.com/ProfessioneIT/italian-rails.git'
+</code>
+
+Notare che deve essere operativo jQuery e jQuery UI. Nel file
+app/assets/javascripts/application.js inserire:
+<code>
+//= require jquery
+//= require jquery-ui
 </code>
 
 == Configurazione
@@ -20,3 +27,20 @@ Eseguire da shell
 $ rails generate italian_rails:install
 </code>
 verrà generata la configurazione di base per italian-rails in `config/initializers/italian-rails.rb`
+
+== Disclaimer
+Attenzione: oltre a quanto riportato nella licenza si intende precisare che
+i dati forniti con questa libreria non sono in alcun modo una fonte
+esaustiva e/o completa. I dati sono reperiti attraverso Internet da fonti
+pubbliche e, ove non specificato, con licenze d'uso meno restrittive
+rispetto a quella fornita con la libreria.
+
+=== I CAP
+Il database contiene un elenco dei CAP italiani. Questo elenco è stato
+creato a partire dai dati trovati a questo URL:
+http://fsfe.org/it/projects/cap/
+
+=== I codici dei comuni e degli stati esteri
+Queste informazioni sono di pubblico dominio e sono reperibili in formato
+XLS a questo URL:
+http://www.agenziaterritorio.it/?id=721

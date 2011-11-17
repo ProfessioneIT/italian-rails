@@ -16,5 +16,12 @@
     <%- if not conf.birthdate_year_selector.blank? %>
       $('<%=conf.birthdate_year_selector%>').val('<%=bd.year%>');
     <%- end %>
+    <%- if @birthplaces && @birthplaces.count > 0 %>
+      $('<%=conf.birthplace_selector%>').autocomplete({
+        autoFocus: true,
+        minLength: 0,
+        source: <%=raw @birthplaces.to_json%>
+      });
+    <%- end %>
   })( jQuery )
 <%- end %>
