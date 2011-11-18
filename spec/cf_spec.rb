@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-include CodiceFiscale
+include ItalianRails::CodiceFiscale
 
 =begin
   Test character:
@@ -86,6 +86,12 @@ describe CF do
       CF.birthdate("RSSMRA90A01C351Q").should eql Date.new(1990,01,01)
       CF.birthdate("VRDNNA10T71H501E").should eql Date.new(2010,12,31)
     end
+
+    it "should correctly find the birthplace" do
+      CF.birthplace_lookup("RSSMRA90A01C351Q").should include({:provincia => "CT", :comune => "CATANIA"})
+      CF.birthplace_lookup("VRDNNA10T71H501E").should include({:provincia => "RM", :comune => "ROMA"})
+    end
+    
     
   end
 

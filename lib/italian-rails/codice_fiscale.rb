@@ -2,6 +2,8 @@ require 'date'
 
 module ItalianRails
   module CodiceFiscale
+
+    # This class stores the procedures needed to handle the format of italian codice fiscale
     class CF
 
       # Regex for validation. It validates the code without the check-digit.
@@ -135,11 +137,7 @@ module ItalianRails
         raise ArgumentError unless CF.valid?(str)
         tr = CF.translate_duplicate_code str
         placecode = self.part(tr, :place)
-        ret = []
-        ItalianRails::DB::Adapter.instance.execute("select comune, provincia from tab_codici_cf where codice=?", [placecode]) do |row|
-          ret << {:comune => row[0], :provincia => row[1]}
-        end
-        ret
+        ItalianRails::DB::Adapter.instance.find_birth_places_by_code(placecode)
       end
 
       # Member functions
