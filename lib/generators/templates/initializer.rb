@@ -18,5 +18,5 @@ ItalianRails.config do |config|
   config.codice_fiscale.birthplace_selector = 'input.birthplace'
 
   # Should ItalianRails search for the birthplace in the database ?
-  config.codice_fiscale.birthplace_lookup = false
+  config.codice_fiscale.birthplace_lookup = true
 end

@@ -15,10 +15,11 @@ gem 'italian-rails', :git => 'git://github.com/ProfessioneIT/italian-rails.git'
 </code>
 
 Notare che deve essere operativo jQuery e jQuery UI. Nel file
-app/assets/javascripts/application.js inserire:
+app/assets/javascripts/application.js inserire (se non già presenti):
 <code>
 //= require jquery
 //= require jquery-ui
+//= require italian-rails
 </code>
 
 == Configurazione
@@ -27,6 +28,8 @@ Eseguire da shell
 $ rails generate italian_rails:install
 </code>
 verrà generata la configurazione di base per italian-rails in `config/initializers/italian-rails.rb`
+Per poter usare gli helper predisposti per il codice fiscale nel form
+dovrà essere presente un input di tipo text con la class 'codice_fiscale'.
 
 == Disclaimer
 Attenzione: oltre a quanto riportato nella licenza si intende precisare che
