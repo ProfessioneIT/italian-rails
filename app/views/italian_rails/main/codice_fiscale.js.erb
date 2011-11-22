@@ -22,6 +22,9 @@
         minLength: 0,
         source: <%=raw @birthplaces.to_json%>
       });
+      if($('<%=conf.birthplace_selector%>').val() == ''){
+        $('<%=conf.birthplace_selector%>').val('<%=@birthplaces[0]%>');
+      }
     <%- end %>
   })( jQuery );
 <%- end %>
