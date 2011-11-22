@@ -1,10 +1,11 @@
 module ItalianRails
   class Configuration
-    attr_accessor :codice_fiscale
+    attr_accessor :codice_fiscale, :cap_lookup
 
     # Provides a default configuration
     def initialize
       @codice_fiscale = CodiceFiscaleConfiguration.new
+      @cap_lookup = CodiceFiscaleConfiguration.new
     end
   end
 
@@ -13,4 +14,9 @@ module ItalianRails
       :birthdate_localize,
       :birthdate_day_selector, :birthdate_month_selector, :birthdate_year_selector
   end
+
+  class CapLookupConfiguration
+    attr_accessor :lookup_by_prov, :lookup_by_comu, :lookup_by_cap
+  end
+
 end

@@ -15,6 +15,25 @@ module ItalianRails
       end
     end
 
+    def cap_lookup
+      case params[:key]
+      when 'prov'
+        @cities = nil
+        @codes = nil
+      when 'cap'
+        @cities = nil
+        @province = nil
+        @provinces = nil
+      when 'comu'
+        @codes = nil
+        @province = nil
+        @provinces = nil
+      end
+      respond_to do |format|
+        format.js
+      end
+    end
+
     def only_ajax!
       #render_404 unless request.xhr?
     end

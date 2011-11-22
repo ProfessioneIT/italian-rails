@@ -3,7 +3,8 @@
 ItalianRails.config do |config|
 
   # Configure the codice_fiscale form helpers
-  # Leave selectors empty to avoid assignment in forms.
+  # Assign an empty string to selectors to avoid assignment and
+  # autocompletion activation in forms.
   
   # Set the selector for birthdate.
   config.codice_fiscale.birthdate_selector = 'input.birthdate'
@@ -19,4 +20,15 @@ ItalianRails.config do |config|
 
   # Should ItalianRails search for the birthplace in the database ?
   config.codice_fiscale.birthplace_lookup = true
+
+  # Configure the cap, province and city lookup
+
+  # Shuld italian-rails look for provinces that match?
+  config.cap_lookup.lookup_by_prov = true
+
+  # Shuld italian-rails look for cap that match?
+  config.cap_lookup.lookup_by_cap = true
+
+  # Shuld italian-rails look for cities that match?
+  config.cap_lookup.lookup_by_comu = true
 end
