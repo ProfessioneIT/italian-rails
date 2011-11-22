@@ -5,8 +5,28 @@ sviluppare un'applicazione che tratta specificamente utenze italiane.
 
 == Cosa aggiunge a rails
 * Validazione del codice fiscale
-* Database dei cap
-* Form helpers AJAX per aiutare l'utente nella compilazione degli indirizzi
+* Database dei cap e dei comuni italiani e stranieri per il codice fiscale
+* Form helpers AJAX per aiutare l'utente nella compilazione
+
+Questo engine è pensato per aiutare l'utente a compilare il form di dati
+personali che di solito ci si trova a gestire all'atto della iscrizione ad
+un servizio.
+
+L'utente non verrà forzato ad usare i valori forniti ma gli verrà dato un
+suggerimento (tramite la funzione autocomplete di jquery-ui) sui possibili
+valori da inserire.
+
+Una volta inserito il codice fiscale, la data ed il luogo di nascita
+verranno popolati automaticamente. Poichè vi sono varie corrispondenze per
+i luoghi di nascita, verrà anche popolato l'automplete per il campo con
+tutti i risultati della ricerca.
+
+Per quanto riguarda la ricerca del comune, si può scegliere di popolare per
+primo sia il cap che la provincia. L'elenco dell'autocomplete verrà
+popolato con i valori trovati in base all'ultimo campo popolato. In caso di
+scelta del cap (prima della provincia) il campo provincia viene popolato
+automaticamente. E' quindi auspicabile (anche se non obbligatorio) che il
+primo campo compilato sia il cap.
 
 == Installazione
 Inserire all'interno del Gemfile
@@ -30,6 +50,10 @@ $ rails generate italian_rails:install
 verrà generata la configurazione di base per italian-rails in `config/initializers/italian-rails.rb`
 Per poter usare gli helper predisposti per il codice fiscale nel form
 dovrà essere presente un input di tipo text con la class 'codice_fiscale'.
+
+Per poter usare gli helper predisposti per cap e provincia nel form
+dovranno essere presenti rispettivamente un input di tipo testo con classe
+'cap' ed un input di tipo testo con classe 'provincia'
 
 == Disclaimer
 Attenzione: oltre a quanto riportato nella licenza si intende precisare che
