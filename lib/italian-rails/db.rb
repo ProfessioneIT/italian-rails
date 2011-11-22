@@ -16,14 +16,39 @@ module ItalianRails
       end
 
       def find_birth_places_by_code(code)
-        ret = []
-        SQLite3::Database.new( @db_path ) do |db|
+        query do |db,ret|
           db.execute("select comune, provincia from tab_codici_cf where codice=?", [code]) do |row|
             ret << {:comune => row[0], :provincia => row[1]}
           end
         end
-        ret
       end
+
+      def find_cities_by_cap(cap)
+        query do |db,ret|
+          db.execute("select prov_cap, comu_cap, fraz_cap from tab_cap where capi_cap=?", [cap]) do |row|
+            ret << {:provincia => row[0], :comune => row[1], :frazione => row[2]}
+          end
+        end
+      end
+
+      def find_places_by_prov(prov)
+        query do |db,ret|
+          db.execute("select comu_cap, fraz_cap, capi_cap from tab_cap where prov_cap=?", [prov]) do |row|
+            ret << {:comune => row[0], :frazione => row[1], :cap => row[2]}
+          end
+        end
+      end
+
+      def query
+        if block_given?
+          ret = []
+          SQLite3::Database.new( @db_path ) do |db|
+            yield(db,ret)
+          end
+          ret
+        end
+      end
+
 
     end
   end

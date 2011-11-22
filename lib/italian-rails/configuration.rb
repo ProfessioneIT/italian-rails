@@ -5,7 +5,7 @@ module ItalianRails
     # Provides a default configuration
     def initialize
       @codice_fiscale = CodiceFiscaleConfiguration.new
-      @cap_lookup = CodiceFiscaleConfiguration.new
+      @cap_lookup = CapLookupConfiguration.new
     end
   end
 
@@ -16,7 +16,7 @@ module ItalianRails
   end
 
   class CapLookupConfiguration
-    attr_accessor :lookup_by_prov, :lookup_by_comu, :lookup_by_cap
+    attr_accessor :lookup_by_prov, :lookup_by_cap
   end
 
 end

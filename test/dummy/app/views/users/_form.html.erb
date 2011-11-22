@@ -34,6 +34,26 @@
     </div>
   </div>
 
+  <div class="fields">
+    <div class="field">
+      <%=f.label :province%>
+      <%=f.text_field :province, :class => 'provincia'%>
+    </div>
+    <div class="field">
+      <%=f.label :cap_postal_code%>
+      <%=f.text_field :cap_postal_code, :class => 'cap'%>
+    </div>
+    <div class="field">
+      <%=f.label :location%>
+      <%=f.text_field :location, :class => 'comune'%>
+    </div>
+    <div class="field">
+      <%=f.label :address1%>
+      <%=f.text_field :address1%><br/>
+      <%=f.text_field :address2%>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

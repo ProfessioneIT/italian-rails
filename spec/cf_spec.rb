@@ -110,6 +110,10 @@ describe CF do
     it "should tell correctly the birthdate" do
       newcf.birthdate.should eql Date.new(1990,01,01)
     end
+
+    it "should find correctly the birthplace" do
+      newcf.birthplace_lookup.should include({:provincia => "CT", :comune => "CATANIA"})
+    end
     
   end
 end

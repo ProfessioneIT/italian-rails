@@ -19,4 +19,12 @@ ItalianRails.config do |config|
 
   # Should ItalianRails search for the birthplace in the database ?
   config.codice_fiscale.birthplace_lookup = true
+
+  # Configure the cap, province and city lookup
+
+  # Shuld italian-rails look for provinces that match?
+  config.cap_lookup.lookup_by_prov = true
+
+  # Shuld italian-rails look for cap that match?
+  config.cap_lookup.lookup_by_cap = true
 end

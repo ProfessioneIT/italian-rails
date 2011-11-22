@@ -28,7 +28,4 @@ ItalianRails.config do |config|
 
   # Shuld italian-rails look for cap that match?
   config.cap_lookup.lookup_by_cap = true
-
-  # Shuld italian-rails look for cities that match?
-  config.cap_lookup.lookup_by_comu = true
 end

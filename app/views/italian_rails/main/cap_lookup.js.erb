@@ -1,0 +1,28 @@
+(function($){ 
+  <%- unless @cities.nil? %>
+    if( $(window.itarails_comu_selector).val() == '' ) {
+      $(window.itarails_comu_selector).autocomplete({
+        autoFocus: true,
+        minLength: 0,
+        source: <%=raw @cities.to_json%>
+      });
+      <%- if @cities.length == 1 %>
+        $(window.itarails_comu_selector).val('<%=@cities[0]%>');
+      <%-end%>
+    }
+  <%- end %>
+  <%- unless @caps.nil? %>
+    if( $(window.itarails_comu_selector).val() == '' ) {
+      $(window.itarails_cap_selector).autocomplete({
+        autoFocus: true,
+        minLength: 0,
+        source: <%=raw @caps.to_json%>
+      });
+    }
+  <%- end %>
+  <%- unless @province.nil? %>
+    if( $(window.itarails_prov_selector).val() == '' ) {
+      $(window.itarails_prov_selector).val('<%=@province%>');
+    }
+  <%- end %> 
+})( jQuery );

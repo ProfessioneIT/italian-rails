@@ -18,16 +18,17 @@ module ItalianRails
     def cap_lookup
       case params[:key]
       when 'prov'
-        @cities = nil
-        @codes = nil
+        if ItalianRails.config.cap_lookup.lookup_by_prov
+          result = DB::Adapter.instance.find_places_by_prov(params[:value].upcase)
+          @cities = result.collect{|r| r[:frazione].blank? ? r[:comune] : "#{r[:frazione]} #{r[:comune]}" }.uniq
+          @caps = result.collect{|r| r[:cap] }.uniq
+        end
       when 'cap'
-        @cities = nil
-        @province = nil
-        @provinces = nil
-      when 'comu'
-        @codes = nil
-        @province = nil
-        @provinces = nil
+        if ItalianRails.config.cap_lookup.lookup_by_cap
+          result = DB::Adapter.instance.find_cities_by_cap(params[:value])
+          @cities = result.collect{|r| r[:frazione].blank? ? r[:comune] : "#{r[:frazione]} #{r[:comune]}" }.uniq
+          @province = result[0].nil? ? nil : result[0][:provincia]
+        end
       end
       respond_to do |format|
         format.js

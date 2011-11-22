@@ -148,7 +148,13 @@ module ItalianRails
       end
 
       [:valid?, :male?, :birthdate, :birthplace_lookup].each do |method|
-        class_eval "def #{method}; CF.#{method} @code; end"
+        var = "_" + method.to_s.gsub('?','_')
+        name = method.to_s
+        class_eval <<-EOT
+          def #{name}
+            @#{var} ||= self.class.#{name}(@code)
+          end
+        EOT
       end
 
       private
