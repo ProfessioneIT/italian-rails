@@ -8,7 +8,7 @@ module ItalianRails
 
     def codice_fiscale
       @cf = CodiceFiscale::CF.new(params[:codice_fiscale])
-      @birthplaces = @cf.birthplace_lookup.collect{|place| "#{place[:comune]} (#{place[:provincia]})" } if ItalianRails.config.codice_fiscale.birthplace_lookup
+      @birthplaces = @cf.birthplace_lookup.collect{|place| "#{place[:comune]} (#{place[:provincia]})" } if ItalianRails.config.codice_fiscale.birthplace_lookup && @cf.valid?
 
       respond_to do |format|
         format.js
